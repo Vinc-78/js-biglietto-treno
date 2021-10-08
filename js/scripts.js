@@ -21,19 +21,22 @@ if (isNaN(eta)) {
 } else {
     prezzo=(kmDaPercorrere*costoKm);
     prezzo=(Math.round(prezzo * 100) / 100); //Arrotonda alla seconda cifra arrotondando all'intero più vicino
+    prezzo=prezzo.toFixed(2) //Mostra sempre le ultime due cifre anche se l'ultima è 0 
 
     if (eta<18){
             
             alert (`Il prezzo del biglietto è ${prezzo} euro`);
             sconto=(prezzo)-(prezzo*0.20);  //applica lo sconto
             sconto=(Math.round(sconto * 100) / 100); //Arrotonda alla seconda cifra arrotondando all'intero più vicino
+            sconto=sconto.toFixed(2)
             alert (`Poichè hai ${eta} anni, hai uno sconto del 20% e paghi ${sconto} euro`);
     }
     else if (eta>65) {
             
             alert(`Il prezzo del biglietto è ${prezzo} euro`);
             sconto=(prezzo)-(prezzo*0.40);
-            sconto=(Math.round(sconto * 100) / 100);  
+            sconto=(Math.round(sconto * 100) / 100); 
+            sconto=sconto.toFixed(2) 
             alert(`Poichè hai ${eta} anni, hai uno sconto del 40% e paghi ${sconto} euro`);
     }
     else{
