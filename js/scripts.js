@@ -1,47 +1,53 @@
-const costoKm = 0.21;
-let prezzo;
-let sconto;
-
-let eta = prompt("Quanti anni hai ?");
-let kmDaPercorrere = prompt("Quanti Km devi percorrere ?");
-
-const mesKO = "nel formato corretto ossia numeri, ricarica la pag.(CTR + R)"
-
-eta = parseInt(eta);
-kmDaPercorrere = parseInt(kmDaPercorrere);
+//Riscitto il codice ottimizzando la sequenza delle domande, ora non chiede i km se prima non è corretto il dato sull'età
+//Analogamente non va al calcolo del prezzo e quindi dello sconto se il secondo dato ( i km )non è corretto.
 
 
+let anni = prompt("Quanti anni hai ? ");
+let sconto = 0;
+let prezzo = 0;
+const costo = 0.21;
+const mesKO = "Non hai scritto sotto forma di numero, dato non corretto, premi CTR+R e compila correttamente";
+console.log("hai scritto", anni, "dato tipo", typeof (anni));
 
-if (isNaN(eta)) {
-    alert(`Non hai inserito gli anni ${mesKO}`);
-    
-} else if (isNaN(kmDaPercorrere)) {
-    alert(`Non hai scritto i Km ${mesKO}`);
+anni = parseInt(anni);
+
+console.log("dopo la conversione", anni, "è di tipo", typeof (anni));
+
+
+if (isNaN(anni)) {
+    alert(mesKO);
 
 } else {
-    prezzo=(kmDaPercorrere*costoKm);
-    prezzo=(Math.round(prezzo * 100) / 100); //Arrotonda alla seconda cifra arrotondando all'intero più vicino
-    prezzo=prezzo.toFixed(2) //Mostra sempre le ultime due cifre anche se l'ultima è 0 
+    let km = prompt("Quanti km devi percorrere ? ");
 
-    if (eta<18){
-            
-            alert (`Il prezzo del biglietto è ${prezzo} euro`);
-            sconto=(prezzo)-(prezzo*0.20);  //applica lo sconto
-            sconto=(Math.round(sconto * 100) / 100); //Arrotonda alla seconda cifra arrotondando all'intero più vicino
-            sconto=sconto.toFixed(2)
-            alert (`Poichè hai ${eta} anni, hai uno sconto del 20% e paghi ${sconto} euro`);
-    }
-    else if (eta>65) {
-            
-            alert(`Il prezzo del biglietto è ${prezzo} euro`);
-            sconto=(prezzo)-(prezzo*0.40);
-            sconto=(Math.round(sconto * 100) / 100); 
-            sconto=sconto.toFixed(2) 
-            alert(`Poichè hai ${eta} anni, hai uno sconto del 40% e paghi ${sconto} euro`);
-    }
-    else{
-            
-            alert (`Il prezzo del biglietto è ${prezzo} euro`);
+    km = parseInt(km);
+
+    if (isNaN(km)) {
+        alert(mesKO);
+    } else {
+        prezzo = km * costo;
+        console.log("il prezzo è", prezzo);
+        prezzo = prezzo.toFixed(2);
+        alert("il prezzo è " + prezzo);
+
+        if (anni < 18) {
+
+            sconto = prezzo * 0.2;
+            sconto = sconto.toFixed(2);
+            alert(`Poichè hai ${anni} hai diritto ad uno sconto del 20% e quindi il costo è ${sconto}`)
+
+
+        } else if (anni > 65) {
+            sconto = prezzo * 0.4;
+            sconto = sconto.toFixed(2);
+            alert(`Poichè hai ${anni} hai diritto ad uno sconto del 40% e quindi il costo è ${sconto}`)
+        }
+
+
 
     }
+
+
 }
+
+
